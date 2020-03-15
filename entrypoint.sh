@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set -e
+#!/bin/bash
 
 # Run qa
 if [ -n $QA ] && [ $QA == 1 ]; then
@@ -15,5 +13,5 @@ if [ -n $DEV ] && [ $DEV == 1 ]; then
   python manage.py runserver 0.0.0.0:$PORT
 else
   echo ">>>> APP ENTRY POINT: Running in PROD mode"
-  gunicorn --config gunicorn.py corvid_19_uk.api.wsgi
+  gunicorn --config gunicorn.py covid_19_uk.wsgi
 fi

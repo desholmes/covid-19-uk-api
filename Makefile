@@ -1,10 +1,13 @@
-.PHONY: setup build run build-run build-cold
+.PHONY: clean-dangling-images setup build run build-run build-cold
 
 -include .env
 
 $(eval REGISTRY=$(shell grep '* Registry:' README.md | awk -F ':' '{print $$2}' | sed 's/ //g'))
 $(eval REPOSITORY=$(shell grep '* Repository name:' README.md | awk -F ':' '{print $$2}' | sed 's/ //g'))
 $(eval VERSION=$(shell grep '* Current version:' README.md | awk -F ':' '{print $$2}' | sed 's/ //g'))
+
+clean-dangling-images:
+	docker rmi -f $$(docker images -f 'dangling=true' -q)
 
 setup:
 	cp ./.env-dist ./.env
@@ -24,6 +27,7 @@ run:
 	-e QA=$(QA) \
 	-p $(PORT):$(PORT) \
 	-v $(PWD)/covid_19_uk:/usr/src/covid_19_uk \
+	-v $(PWD)/data:/usr/src/data \
 		$(REGISTRY)/$(REPOSITORY):$(VERSION)
 
 build-run:

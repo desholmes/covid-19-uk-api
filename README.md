@@ -4,13 +4,18 @@ An API for the UK COVID-19 stats.
 
 ## Docker Image Details
 
-* Registry: local
+[hub.docker.com/repository/docker/desholmes/covid-19-uk-api](https://hub.docker.com/repository/docker/desholmes/covid-19-uk-api).
+
+* Registry: desholmes
 * Repository name: covid-19-uk-api
 * Current version: 1.0.0
 
 ## Using the API
 
-tbc
+england/totals/[date]
+england/regions/[date]
+northen-ireland/totals/[date]
+wales/totals/[date]
 
 ## Getting Started
 
@@ -51,6 +56,11 @@ If you want to configure the application step-by-step follow the steps below:
 1. Open [0.0.0.0:8000](http://0.0.0.0:8000/) in a browser to see the app running
 1. The 2 above commands can be run using `make build-run`
 1. Press CTL+c to stop the docker container
+
+## Credits
+
+* [Tome White (tomwhite)](https://github.com/tomwhite/covid-19-uk-data) for providing the data
+* [Xavier Ordoquy (xordoquy)](https://medium.com/django-rest-framework/django-rest-framework-viewset-when-you-don-t-have-a-model-335a0490ba6f) and his [demo code](https://github.com/linovia/drf-demo) for non-model Django REST API
 
 ## Version History
 

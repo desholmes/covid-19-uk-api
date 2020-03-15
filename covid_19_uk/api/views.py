@@ -16,7 +16,7 @@ def get_next_task_id():
 
 class TestViewSet(viewsets.ViewSet):
     def list(self, request):
-        serializer = serializers.TestSerializer(
+        serializer = serializers.EnglandTotalSerializer(
             instance=tests.values(), many=True)
         return Response(serializer.data)
 
@@ -28,5 +28,5 @@ class TestViewSet(viewsets.ViewSet):
         except ValueError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = serializers.TestSerializer(instance=task)
+        serializer = serializers.EnglandTotalSerializer(instance=task)
         return Response(serializer.data)

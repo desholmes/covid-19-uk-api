@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
 
-class TestSerializer(serializers.Serializer):
-    date = serializers.CharField(max_length=10)
+class EnglandTotalSerializer(serializers.Serializer):
+    date = serializers.DateField()
     tests = serializers.IntegerField()
     confirmed_cases = serializers.IntegerField()
     deaths = serializers.IntegerField()
