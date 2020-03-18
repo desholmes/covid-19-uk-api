@@ -20,14 +20,15 @@ docker run -it desholmes/covid-19-uk-api:1.0.1
 
 | URL | Description |
 | --- | --- | --- | --- |
-| [uk/totals/](http://0.0.0.0:8000/uk/totals/) | Returns all tests, confirmed cases and deaths for the uk |
-| [uk/totals/2020-03-15](http://0.0.0.0:8000/uk/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for the date `20-03-15` |
-| [uk/local-authorities](http://0.0.0.0:8000/uk/local-authorities/) | Returns... TBC|
-| [uk/local-authorities/2020-03-15](http://0.0.0.0:8000/uk/local-authorities/2020-03-15) | Returns... TBC`2020-03-15` |
-| [scotland/totals/](http://0.0.0.0:8000/scotland/totals/) | Returns... TBC|
-| [scotland/totals/2020-03-15](http://0.0.0.0:8000/scotland/totals/2020-03-15) | Returns... TBC`2020-03-15` |
-| [wales/totals/](http://0.0.0.0:8000/wales/totals/) | Returns... TBC|
-| [wales/totals/2020-03-15](http://0.0.0.0:8000/wales/totals/2020-03-15) | Returns... TBC`2020-03-15` |
+| [uk/totals/](http://0.0.0.0:8000/uk/totals/) | Returns all tests, confirmed cases and deaths for the UK |
+| [uk/totals/2020-03-15](http://0.0.0.0:8000/uk/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for the UK; date `20-03-15` |
+| [uk/local-authorities](http://0.0.0.0:8000/uk/local-authorities/) | Returns all cases by local authorities for the UK |
+| [scotland/totals/](http://0.0.0.0:8000/scotland/totals/) | Returns all tests, confirmed cases and deaths for Scotland |
+| [scotland/totals/2020-03-15](http://0.0.0.0:8000/scotland/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for Scotland; date `2020-03-15` |
+| [wales/totals/](http://0.0.0.0:8000/wales/totals/) | Returns all tests, confirmed cases and deaths for Wales |
+| [wales/totals/2020-03-15](http://0.0.0.0:8000/wales/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for Wales; date `2020-03-15` |
+| [northern-ireland/totals/](http://0.0.0.0:8000/northern-ireland/totals/) | Returns all tests, confirmed cases and deaths for Northern Ireland |
+| [northern-ireland/totals/2020-03-15](http://0.0.0.0:8000/northern-ireland/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for Northern Ireland; date `2020-03-15` |
 
 ## Getting Started (Development)
 
