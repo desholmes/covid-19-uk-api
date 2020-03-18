@@ -1,6 +1,6 @@
 # COVID-19 UK Stats API
 
-An API for the UK COVID-19 stats.
+An API for the UK COVID-19 stats provided by [tomwhite](https://github.com/tomwhite/covid-19-uk-data).
 
 ## Docker Image Details
 
@@ -8,13 +8,14 @@ An API for the UK COVID-19 stats.
 
 * Registry: desholmes
 * Repository name: covid-19-uk-api
-* Current version: 1.0.0
+* Current version: 1.0.1
 
 ## Using the API
 
-england/totals/[date]
-england/regions/[date]
-northen-ireland/totals/[date]
+uk/totals/[date]
+uk/local-authorities/[date]
+scotland/totals/[date]
+northern-ireland/totals/[date]
 wales/totals/[date]
 
 ## Getting Started

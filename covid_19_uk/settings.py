@@ -21,7 +21,10 @@ def get_env_bool(env_key):
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+if os.environ.get("SECRET_KEY") is None:
+    SECRET_KEY = 'RepLac3MeInProd!#'
+else:
+    SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = get_env_bool("DEBUG")
@@ -67,7 +70,13 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
-    'UNAUTHENTICATED_USER': None
+    'UNAUTHENTICATED_USER': None,
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
 }
 
 WSGI_APPLICATION = 'covid_19_uk.wsgi.application'

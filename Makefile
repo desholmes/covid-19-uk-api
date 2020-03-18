@@ -30,6 +30,12 @@ run:
 	-v $(PWD)/data:/usr/src/data \
 		$(REGISTRY)/$(REPOSITORY):$(VERSION)
 
+run-prod:
+	@docker run -it \
+	-e PORT=8000 \
+	-p 8000:8000 \
+		desholmes/covid-19-uk-api:1.0.1
+
 build-run:
 	@make build
 	@make run
