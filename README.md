@@ -19,7 +19,7 @@ docker run -it desholmes/covid-19-uk-api:1.0.1
 ```
 
 | URL | Description |
-| --- | --- | --- | --- |
+| --- | --- |
 | [uk/totals/](http://0.0.0.0:8000/uk/totals/) | Returns all tests, confirmed cases and deaths for the UK |
 | [uk/totals/2020-03-15](http://0.0.0.0:8000/uk/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for the UK; date `20-03-15` |
 | [uk/local-authorities](http://0.0.0.0:8000/uk/local-authorities/) | Returns all cases by local authorities for the UK |
