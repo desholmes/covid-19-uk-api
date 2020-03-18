@@ -1,4 +1,6 @@
-.PHONY: clean-dangling-images setup build run build-run build-cold
+.PHONY: clean-dangling-images setup \
+build build-push build-run build-cold \
+push run
 
 -include .env
 
@@ -7,16 +9,27 @@ $(eval REPOSITORY=$(shell grep '* Repository name:' README.md | awk -F ':' '{pri
 $(eval VERSION=$(shell grep '* Current version:' README.md | awk -F ':' '{print $$2}' | sed 's/ //g'))
 
 clean-dangling-images:
-	docker rmi -f $$(docker images -f 'dangling=true' -q)
+	@docker rmi -f $$(docker images -f 'dangling=true' -q)
 
 setup:
-	cp ./.env-dist ./.env
+	@cp ./.env-dist ./.env
 
 build:
 	@docker build \
 		--no-cache \
 		-f Dockerfile \
 		-t $(REGISTRY)/$(REPOSITORY):$(VERSION) .
+
+build-push:
+	@make build
+	@make docker-login
+	@make push
+
+docker-login:
+	@echo $(REGISTRY_PASSWORD) | docker login --username $(REGISTRY_USERNAME) --password-stdin
+
+push:
+	@docker push $(REGISTRY)/$(REPOSITORY):$(VERSION)
 
 run:
 	@docker run -it \
