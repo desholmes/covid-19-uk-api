@@ -1,15 +1,16 @@
 from rest_framework.response import Response
 from rest_framework import viewsets, status
-import pandas as pd
 
 from .serializers.total_serializer import TotalSerializer
 from .utils import get_total_instance_by_date
-from .utils import Total
 from .utils import get_df_from_url
 from .utils import get_totals_from_df
 
-df = get_df_from_url('https://raw.githubusercontent.com/tomwhite/\
-covid-19-uk-data/master/data/covid-19-totals-uk.csv')
+url = 'https://raw.githubusercontent.com/tomwhite/covid-19-uk-data/\
+master/data/covid-19-totals-uk.csv'
+# url = './data/covid-19-totals-uk.csv'
+
+df = get_df_from_url(url)
 totals = get_totals_from_df(df)
 
 

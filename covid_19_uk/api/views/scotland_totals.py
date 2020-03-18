@@ -3,15 +3,17 @@ from rest_framework import viewsets, status
 
 from .serializers.total_serializer import TotalSerializer
 from .utils import get_total_instance_by_date
-from .utils import Total
 from .utils import get_df_from_url
 from .utils import get_totals_from_df
 
-df = get_df_from_url('https://raw.githubusercontent.com/tomwhite/\
-covid-19-uk-data/master/data/covid-19-totals-scotland.csv')
+url = 'https://raw.githubusercontent.com/tomwhite/covid-19-uk-data/\
+master/data/covid-19-totals-scotland.csv'
+# url = './data/covid-19-totals-scotland.csv'
+
+df = get_df_from_url(url)
 totals = get_totals_from_df(df)
 
-                        
+
 class ScotlandTotalViewSet(viewsets.ViewSet):
 
     def list(self, request):
