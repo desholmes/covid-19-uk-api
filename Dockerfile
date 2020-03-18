@@ -1,8 +1,9 @@
-FROM python:3.7-alpine3.10
+FROM python:3.7.6-slim
 
 WORKDIR /usr/src
 
 COPY covid_19_uk/ ./covid_19_uk
+COPY data/ ./data
 COPY manage.py .
 COPY gunicorn.py .
 COPY requirements.txt .
@@ -11,4 +12,4 @@ RUN chmod +x entrypoint.sh
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT ["sh", "/usr/src/entrypoint.sh"]
+ENTRYPOINT ["bash", "/usr/src/entrypoint.sh"]
