@@ -40,10 +40,10 @@ docker run -it desholmes/covid-19-uk-api:1.0.1
 1. Knowledge of [Django 3.0.4](https://www.djangoproject.com/)
 1. Knowledge of [Django REST framework 3.11.0](https://www.django-rest-framework.org/)
 
-Development takes place inside a docker container for the following reasons:
+Development takes place inside a docker container to:
 
-1. Removes the need for a local virtual environment
-1. Ensures the DEV environment is a close as possible to PROD
+1. Remove the need for a local virtual environment
+1. Ensure the DEV environment is a close as possible to PROD
 
 ### Set up
 
