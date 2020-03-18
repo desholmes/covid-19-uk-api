@@ -1,6 +1,6 @@
 # COVID-19 UK Stats API
 
-An API for the UK COVID-19 stats provided by [tomwhite](https://github.com/tomwhite/covid-19-uk-data).
+A REST API for the UK COVID-19 data gathered by [tomwhite](https://github.com/tomwhite/covid-19-uk-data).
 
 ## Docker Image Details
 
@@ -12,13 +12,24 @@ An API for the UK COVID-19 stats provided by [tomwhite](https://github.com/tomwh
 
 ## Using the API
 
-uk/totals/[date]
-uk/local-authorities/[date]
-scotland/totals/[date]
-northern-ireland/totals/[date]
-wales/totals/[date]
+The following starts a local server running on port 8000:
 
-## Getting Started
+```bash
+docker run -it desholmes/covid-19-uk-api:1.0.1
+```
+
+| URL | Description |
+| --- | --- | --- | --- |
+| [uk/totals/](http://0.0.0.0:8000/uk/totals/) | Returns all tests, confirmed cases and deaths for the uk |
+| [uk/totals/2020-03-15](http://0.0.0.0:8000/uk/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for the date `20-03-15` |
+| [uk/local-authorities](http://0.0.0.0:8000/uk/local-authorities/) | Returns... TBC|
+| [uk/local-authorities/2020-03-15](http://0.0.0.0:8000/uk/local-authorities/2020-03-15) | Returns... TBC`2020-03-15` |
+| [scotland/totals/](http://0.0.0.0:8000/scotland/totals/) | Returns... TBC|
+| [scotland/totals/2020-03-15](http://0.0.0.0:8000/scotland/totals/2020-03-15) | Returns... TBC`2020-03-15` |
+| [wales/totals/](http://0.0.0.0:8000/wales/totals/) | Returns... TBC|
+| [wales/totals/2020-03-15](http://0.0.0.0:8000/wales/totals/2020-03-15) | Returns... TBC`2020-03-15` |
+
+## Getting Started (Development)
 
 ### Prerequisites
 
@@ -27,8 +38,6 @@ wales/totals/[date]
 1. Knowledge of [Python 3.7.3](https://www.python.org/downloads/)
 1. Knowledge of [Django 3.0.4](https://www.djangoproject.com/)
 1. Knowledge of [Django REST framework 3.11.0](https://www.django-rest-framework.org/)
-
-## Development
 
 Development takes place inside a docker container for the following reasons:
 
@@ -41,7 +50,7 @@ Development takes place inside a docker container for the following reasons:
 1. By default the app is configure for local development. Running `make build-cold` stand your local env up from scratch (not to be used for PROD)
 1. Open [0.0.0.0:8000](http://0.0.0.0:8000/) in a browser to see the app running
 1. Changing files in `covid_19_uk` will cause the app to reload
-1. Press CTL+c to stop the docker container
+1. Press `CTL+c` to stop the docker container
 
 If you want to configure the application step-by-step follow the steps below:
 
@@ -61,8 +70,9 @@ If you want to configure the application step-by-step follow the steps below:
 ## Credits
 
 * [Tome White (tomwhite)](https://github.com/tomwhite/covid-19-uk-data) for providing the data
-* [Xavier Ordoquy (xordoquy)](https://medium.com/django-rest-framework/django-rest-framework-viewset-when-you-don-t-have-a-model-335a0490ba6f) and his [demo code](https://github.com/linovia/drf-demo) for non-model Django REST API
+* [Xavier Ordoquy (xordoquy)](https://medium.com/django-rest-framework/django-rest-framework-viewset-when-you-don-t-have-a-model-335a0490ba6f) and his [demo code](https://github.com/linovia/drf-demo) for creating a non-model Django REST API
 
 ## Version History
 
+1. `1.0.0`: Added endpoints and docs for available data sources
 1. `1.0.0`: Base repo with DBless Django app
