@@ -1,6 +1,11 @@
 import os
 
-bind = f'0.0.0.0:{os.environ["PORT"]}'
+PORT = os.environ.get("PORT")
+
+if PORT is None:
+    PORT = 8000
+
+bind = f'0.0.0.0:{PORT}'
 timeout = 120
 
 if os.environ.get("DEBUG") == 1:
