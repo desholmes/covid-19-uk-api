@@ -75,5 +75,6 @@ If you want to configure the application step-by-step follow the steps below:
 
 ## Version History
 
-1. `1.0.0`: Added endpoints and docs for available data sources
+1. `1.0.2`: Added default port
+1. `1.0.1`: Added endpoints and docs for available data sources
 1. `1.0.0`: Base repo with DBless Django app
