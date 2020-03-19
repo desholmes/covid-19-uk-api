@@ -8,14 +8,14 @@ A REST API for the UK COVID-19 data gathered by [tomwhite](https://github.com/to
 
 * Registry: desholmes
 * Repository name: covid-19-uk-api
-* Current version: 1.0.1
+* Current version: 1.0.2
 
 ## Using the API
 
 The following starts a local server running on port 8000:
 
 ```bash
-docker run -it desholmes/covid-19-uk-api:1.0.1
+docker run -it -p 8000:8000 desholmes/covid-19-uk-api:1.0.2
 ```
 
 | URL | Description |

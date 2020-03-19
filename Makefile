@@ -44,10 +44,7 @@ run:
 		$(REGISTRY)/$(REPOSITORY):$(VERSION)
 
 run-prod:
-	@docker run -it \
-	-e PORT=8000 \
-	-p 8000:8000 \
-		desholmes/covid-19-uk-api:1.0.1
+	@docker run -it -p 8000:8000 desholmes/covid-19-uk-api:1.0.2
 
 build-run:
 	@make build
