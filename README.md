@@ -1,4 +1,4 @@
-# COVID-19 UK Stats API
+# COVID-19 UK Data REST API
 
 A REST API for the UK COVID-19 data gathered by [tomwhite](https://github.com/tomwhite/covid-19-uk-data).
 
