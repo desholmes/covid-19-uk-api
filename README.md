@@ -1,6 +1,6 @@
 # COVID-19 UK Data REST API
 
-A REST API for the UK COVID-19 data gathered by [tomwhite](https://github.com/tomwhite/covid-19-uk-data).
+A [REST API](https://covid-19-uk-api.dholmes.co.uk) for the UK COVID-19 data gathered by [tomwhite](https://github.com/tomwhite/covid-19-uk-data). There is also a [REST API](https://github.com/desholmes/covid-19-us-api) for the US COVID-19 data gathered by [nytimes](https://github.com/nytimes/covid-19-data).
 
 ## Docker Image Details
 
@@ -8,27 +8,30 @@ A REST API for the UK COVID-19 data gathered by [tomwhite](https://github.com/to
 
 * Registry: desholmes
 * Repository name: covid-19-uk-api
-* Current version: 1.0.2
+* Current version: 1.0.3
 
 ## Using the API
+
+A hosted version version of the API can be found at [covid-19-uk-api.dholmes.co.uk](https://covid-19-uk-api.dholmes.co.uk).
 
 The following starts a local server running on port 8000:
 
 ```bash
-docker run -it -p 8000:8000 desholmes/covid-19-uk-api:1.0.2
+docker run -it -p 8000:8000 desholmes/covid-19-uk-api:1.0.3
 ```
 
-| URL | Description |
-| --- | --- |
-| [uk/totals/](http://0.0.0.0:8000/uk/totals/) | Returns all tests, confirmed cases and deaths for the UK |
-| [uk/totals/2020-03-15](http://0.0.0.0:8000/uk/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for the UK; date `20-03-15` |
-| [uk/local-authorities](http://0.0.0.0:8000/uk/local-authorities/) | Returns all cases by local authorities for the UK |
-| [scotland/totals/](http://0.0.0.0:8000/scotland/totals/) | Returns all tests, confirmed cases and deaths for Scotland |
-| [scotland/totals/2020-03-15](http://0.0.0.0:8000/scotland/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for Scotland; date `2020-03-15` |
-| [wales/totals/](http://0.0.0.0:8000/wales/totals/) | Returns all tests, confirmed cases and deaths for Wales |
-| [wales/totals/2020-03-15](http://0.0.0.0:8000/wales/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for Wales; date `2020-03-15` |
-| [northern-ireland/totals/](http://0.0.0.0:8000/northern-ireland/totals/) | Returns all tests, confirmed cases and deaths for Northern Ireland |
-| [northern-ireland/totals/2020-03-15](http://0.0.0.0:8000/northern-ireland/totals/2020-03-15) | Returns all tests, confirmed cases and deaths for Northern Ireland; date `2020-03-15` |
+| URL | Description | Hosted Link | Local Link |
+| --- | --- | --- | --- |
+| /uk/totals | All UK totals: tests, confirmed cases and deaths | [hosted](https://covid-19-uk-api.dholmes.co.uk/uk/totals/) | [local](http://0.0.0.0:8000/uk/totals/) |
+| /uk/totals/?date=2020-03-15 | UK totals for date (`20-03-15`): tests, confirmed cases and deaths | [hosted](https://covid-19-uk-api.dholmes.co.uk/uk/totals/?date=2020-03-15) | [local](http://0.0.0.0:8000/uk/totals/?date=2020-03-15) |
+| /uk/cases | Total cases by local authorities for the UK: country, area code, area and total cases | [hosted](https://covid-19-uk-api.dholmes.co.uk/uk/cases/) | [local](http://0.0.0.0:8000/uk/cases/) |
+| /uk/cases/?date=20-03-15 | Total cases for date (`20-03-15`) by local authorities for the UK: country, area code, area, and total cases | [hosted](https://covid-19-uk-api.dholmes.co.uk/uk/cases/?date=20-03-15) | [local](http://0.0.0.0:8000/uk/cases/?date=20-03-15) |
+| /scotland/totals | All Scotland totals: tests, confirmed cases and deaths | [hosted](https://covid-19-uk-api.dholmes.co.uk/scotland/totals/) |[local](http://0.0.0.0:8000/scotland/totals/) |
+| /scotland/totals/?date=20-03-15 | All Scotland totals for date (`2020-03-15`): tests, confirmed cases and deaths | [hosted](https://covid-19-uk-api.dholmes.co.uk/?date=20-03-15) | [local](http://0.0.0.0:8000/scotland/totals/?date=20-03-15) |
+| /wales/totals | All Wales totals: tests, confirmed cases and deaths | [hosted](https://covid-19-uk-api.dholmes.co.uk/wales/totals/) | [local](http://0.0.0.0:8000/wales/totals/) |
+| /wales/totals/?date=2020-03-15 | All Wales totals for date(`2020-03-15`): tests, confirmed cases and deaths | [hosted](https://covid-19-uk-api.dholmes.co.uk/wales/totals/?date=2020-03-15) | [local](http://0.0.0.0:8000/wales/totals/?date=2020-03-15) |
+| /northern-ireland/totals | All Northern Ireland totals: tests, confirmed cases and deaths | [hosted](https://covid-19-uk-api.dholmes.co.uk/northern-ireland/totals) | [local](http://0.0.0.0:8000/northern-ireland/totals/) |
+| /northern-ireland/totals/2020-03-15 | All Northern Ireland totals for date (`2020-03-15`): tests, confirmed cases and deaths | [hosted](https://covid-19-uk-api.dholmes.co.uk/northern-ireland/totals/?date=2020-03-15) | [local](http://0.0.0.0:8000/northern-ireland/totals/?date=2020-03-15) |
 
 ## Getting Started (Development)
 
@@ -75,6 +78,7 @@ If you want to configure the application step-by-step follow the steps below:
 
 ## Version History
 
+1. `1.0.3`: Added hosted API
 1. `1.0.2`: Added default port
 1. `1.0.1`: Added endpoints and docs for available data sources
 1. `1.0.0`: Base repo with DBless Django app
