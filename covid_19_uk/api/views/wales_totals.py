@@ -1,14 +1,13 @@
 from rest_framework.response import Response
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 
 from .serializers.total_serializer import TotalSerializer
-from .utils import get_total_instance_by_date
+from .utils import get_totals_by_date
 from .utils import get_df_from_url
 from .utils import get_totals_from_df
 
 url = 'https://raw.githubusercontent.com/tomwhite/covid-19-uk-data/\
 master/data/covid-19-totals-wales.csv'
-# url = './data/covid-19-totals-wales.csv'
 
 df = get_df_from_url(url)
 totals = get_totals_from_df(df)
@@ -17,17 +16,10 @@ totals = get_totals_from_df(df)
 class WalesTotalViewSet(viewsets.ViewSet):
 
     def list(self, request):
+        date = self.request.query_params.get('date')
+        returnTotals = totals
+        if date:
+            returnTotals = get_totals_by_date(date, df)
         serializer = TotalSerializer(
-            instance=totals.values(), many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        try:
-            totalInstance = get_total_instance_by_date(pk, df)
-        except KeyError:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        except ValueError:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        serializer = TotalSerializer(instance=totalInstance)
+            instance=returnTotals.values(), many=True)
         return Response(serializer.data)

@@ -1,8 +1,8 @@
 from rest_framework.response import Response
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 
 from .serializers.case_serializer import CaseSerializer
-from .utils import get_case_instances_by_date
+from .utils import get_cases_by_date
 from .utils import get_df_from_url
 from .utils import get_cases_from_df
 
@@ -17,18 +17,10 @@ cases = get_cases_from_df(df)
 class UkCasesViewSet(viewsets.ViewSet):
 
     def list(self, request):
+        date = self.request.query_params.get('date')
+        returnCases = cases
+        if date:
+            returnCases = get_cases_by_date(date, df)
         serializer = CaseSerializer(
-            instance=cases.values(), many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        try:
-            totalInstances = get_case_instances_by_date(pk, df)
-        except KeyError:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        except ValueError:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        serializer = CaseSerializer(instance=totalInstances.values(),
-                                    many=True)
+            instance=returnCases.values(), many=True)
         return Response(serializer.data)

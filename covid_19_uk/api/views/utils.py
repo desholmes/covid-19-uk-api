@@ -4,53 +4,48 @@ import pandas as pd
 def get_df_from_url(url):
     # TODO add checking and fallback to ./data
     df = pd.read_csv(url)
+    # 'Clean' data
     df = df.replace('1 to 4', 3)
-    return df.fillna(method='ffill')
+    return df.fillna(-1)
 
 
 def get_totals_from_df(df):
     totals = {}
-    for i in range(len(df)):
-        totals[i] = Total(date=df.loc[i, "Date"],
-                          tests=df.loc[i, "Tests"],
-                          confirmed_cases=df.loc[i, "ConfirmedCases"],
-                          deaths=df.loc[i, "Deaths"])
+    i = 0
+    for index, row in df.iterrows():
+        totals[i] = Total(date=row["Date"],
+                          tests=row["Tests"],
+                          confirmed_cases=row["ConfirmedCases"],
+                          deaths=row["Deaths"])
+        i += 1
     return totals
+
+
+def get_totals_by_date(date_str, df):
+    totals_by_date = df[df.Date.eq(date_str)]
+    if len(totals_by_date) == 0:
+        raise ValueError
+    return get_totals_from_df(totals_by_date)
 
 
 def get_cases_from_df(df):
     cases = {}
-    for i in range(len(df)):
-        cases[i] = Case(date=df.loc[i, "Date"],
-                        country=df.loc[i, "Country"],
-                        area_code=df.loc[i, "AreaCode"],
-                        area=df.loc[i, "Area"],
-                        total_cases=df.loc[i, "TotalCases"])
+    i = 0
+    for index, row in df.iterrows():
+        cases[i] = Case(date=row["Date"],
+                        country=row["Country"],
+                        area_code=row["AreaCode"],
+                        area=row["Area"],
+                        total_cases=row["TotalCases"])
+        i += 1
     return cases
 
 
-def get_total_instance_by_date(date_str, df):
-    instance_df = df[df['Date'] == date_str].to_numpy()
-    if len(instance_df) == 0:
+def get_cases_by_date(date_str, df):
+    cases_by_date = df[df.Date.eq(date_str)]
+    if len(cases_by_date) == 0:
         raise ValueError
-    return Total(date=instance_df[0][0],
-                 tests=instance_df[0][1],
-                 confirmed_cases=instance_df[0][2],
-                 deaths=instance_df[0][3])
-
-
-def get_case_instances_by_date(date_str, df):
-    instances_df = df[df['Date'] == date_str]
-    if len(instances_df) == 0:
-        raise ValueError
-    cases = {}
-    for i in range(len(instances_df)):
-        cases[i] = Case(date=instances_df.loc[i, "Date"],
-                        country=instances_df.loc[i, "Country"],
-                        area_code=instances_df.loc[i, "AreaCode"],
-                        area=instances_df.loc[i, "Area"],
-                        total_cases=instances_df.loc[i, "TotalCases"])
-    return cases
+    return get_cases_from_df(cases_by_date)
 
 
 class Total(object):
