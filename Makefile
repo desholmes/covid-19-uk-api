@@ -38,6 +38,7 @@ run:
 	-e DEV=$(DEV) \
 	-e SECRET_KEY=$(SECRET_KEY) \
 	-e QA=$(QA) \
+	-e GA_ID=$(GA_ID) \
 	-p $(PORT):$(PORT) \
 	-v $(PWD)/covid_19_uk:/usr/src/covid_19_uk \
 	-v $(PWD)/data:/usr/src/data \
