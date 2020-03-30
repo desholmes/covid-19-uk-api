@@ -29,8 +29,15 @@ else:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = get_env_bool("DEBUG")
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', 'covid-19-uk-api.dholmes.co.uk']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1',
+                 'localhost', 'covid-19-uk-api.dholmes.co.uk']
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+if os.environ.get("GA_ID") is None:
+    GA_ID = False
+else:
+    GA_ID = os.environ.get("GA_ID")
 
 # Application definition
 
@@ -39,15 +46,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd parties
     'rest_framework',
+    'corsheaders',
     # Application
     'covid_19_uk.api',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'covid_19_uk.api.ga.gq_middleware',
 ]
 
 ROOT_URLCONF = 'covid_19_uk.urls'
@@ -67,6 +77,14 @@ TEMPLATES = [
         },
     },
 ]
+
+# DataFlair #Local Memory Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'DataFlair',
+    }
+}
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
