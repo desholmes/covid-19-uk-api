@@ -8,7 +8,7 @@ A [REST API](https://covid-19-uk-api.dholmes.co.uk) for the UK COVID-19 data gat
 
 * Registry: desholmes
 * Repository name: covid-19-uk-api
-* Current version: 1.0.4
+* Current version: 1.0.5
 
 ## Using the API
 
@@ -78,6 +78,7 @@ If you want to configure the application step-by-step follow the steps below:
 
 ## Version History
 
+1. `1.0.5`: Bugfix for caching
 1. `1.0.4`: Added CORS allow all headers, caching, ga tracking, GNU GENERAL PUBLIC V3 LICENSE
 1. `1.0.3`: Added hosted API
 1. `1.0.2`: Added default port
