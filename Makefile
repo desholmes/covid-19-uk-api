@@ -16,7 +16,6 @@ setup:
 
 build:
 	@docker build \
-		--no-cache \
 		-f Dockerfile \
 		-t $(REGISTRY)/$(REPOSITORY):$(VERSION) .
 
