@@ -10,13 +10,14 @@ def url_to_key(url):
 def get_df_from_url(url):
     cache_key = url_to_key(url)
     cached_df = caches['default'].get(cache_key)
+    cached_df = None
 
     if cached_df is None:
         df = pd.read_csv(url)
         # 'Clean' data
         df = df.replace('1 to 4', 3)
-        df['Deaths_SMA_7'] = df.iloc[:, 3].rolling(window=8).mean()
-        df['Deaths_Daily'] = df['Deaths'].diff(1)
+        df['Deaths_Daily'] = df['Deaths'].diff()
+        df['Deaths_Daily_SMA_7'] = df.iloc[:, 4].rolling(window=8).mean()
         caches['default'].set(cache_key, df, 3600)  # 1hr
         df = df.fillna(-1)
         cached_df = df
@@ -31,7 +32,7 @@ def get_totals_from_df(df):
                           tests=row["Tests"],
                           confirmed_cases=row["ConfirmedCases"],
                           deaths=row["Deaths"],
-                          deaths_sma_7=row["Deaths_SMA_7"],
+                          deaths_daily_sma_7=row["Deaths_Daily_SMA_7"],
                           deaths_daily=row["Deaths_Daily"])
         i += 1
     return totals
@@ -67,7 +68,7 @@ def get_cases_by_date(date_str, df):
 class Total(object):
     def __init__(self, **kwargs):
         for field in ('date', 'tests', 'confirmed_cases',
-                      'deaths', 'deaths_sma_7', 'deaths_daily'):
+                      'deaths', 'deaths_daily', 'deaths_daily_sma_7'):
             setattr(self, field, kwargs.get(field, None))
 
 
