@@ -6,3 +6,5 @@ class TotalSerializer(serializers.Serializer):
     tests = serializers.IntegerField()
     confirmed_cases = serializers.IntegerField()
     deaths = serializers.IntegerField()
+    deaths_sma_7 = serializers.IntegerField()
+    deaths_daily = serializers.IntegerField()
